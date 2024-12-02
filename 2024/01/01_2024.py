@@ -14,8 +14,21 @@ df['Difference'] = abs(df['List 1'] - df['List 2'])
 # Step 4: Calculate the sum of numbers in 'Difference' (Total Distance)
 total_distance = df['Difference'].sum()
 
-# Output the total distance
 print(f"Total Distance: {total_distance}")
 
+# Total Distance: 2164381
 
 #####--- Part Two ---#####
+
+# Step 5: Count occurrences of each number from List 1 in List 2
+list_2_counts = df['List 2'].value_counts().to_dict()
+
+# Create the Multiply column
+df['Multiply'] = df['List 1'].apply(lambda x: x * list_2_counts.get(x, 0))
+
+# Step 6: Calculate the similarity score (sum of Multiply column)
+similarity_score = df['Multiply'].sum()
+
+print(f"Similarity Score: {similarity_score}")
+
+# Similarity Score: 20719933
